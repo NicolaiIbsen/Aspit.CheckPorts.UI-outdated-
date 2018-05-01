@@ -1,0 +1,59 @@
+﻿<Window x:Class="Aspit.CheckPorts.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Aspit.CheckPorts.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="525">
+    <Grid>
+        <TabControl x:Name="tabcontrol" HorizontalAlignment="Left" Height="241" VerticalAlignment="Top" Width="508">
+            <TabItem Header="Oversigt">
+                <Grid Background="#FFE5E5E5" Margin="0,-1,-11.4,0">
+                    <ComboBox x:Name="ComboBoxRoomName" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,10,0,0" SelectionChanged="ComboBoxRoomName_SelectionChanged"/>
+                    <ComboBox x:Name="ComboBoxPortSpecifier" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,37,0,0" SelectionChanged="ComboBoxPortSpecifier_SelectionChanged"/>
+                    <Button x:Name="ButtonAllPorts" Content="List" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="428,10,0,0" Click="ButtonAllPorts_Click"/>
+                    <Button x:Name="ButtonSave" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,94,0,0" Click="ButtonSave_Click"/>
+                    <TextBlock x:Name="TextBlockEditedPorts" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Redigerede porte: " VerticalAlignment="Top" Margin="0,197,0,0"/>
+                    <Button x:Name="ButtonReset" Content="Reset" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="428,194,0,0" Click="ButtonReset_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tilføj">
+                <Grid Background="#FFE5E5E5" Margin="0,-1,-11.4,0" KeyDown="Grid_KeyDown">
+                    <ComboBox x:Name="ComboBoxRoomNameTilføj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="10,34,0,0" SelectionChanged="ComboBoxRoomNameTilføj_SelectionChanged">
+                        <ComboBox.Items>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <TextBox x:Name="TextBoxPortSpecifierTilføj" Text="Port specifier" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="10,61,0,0"/>
+                    <TextBox x:Name="TextBoxPortNumberTilføj" Text="Port nummer" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="9,89,0,0"/>
+                    <Button x:Name="ButtonTilføjTilføj" Content="Tilføj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="22" Margin="10,137,0,0" Click="ButtonTilføjTilføj_Click" RenderTransformOrigin="0.304,-0.782"/>
+                    <Button x:Name="ButtonSaveTilføj" Content="Gem til database" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="210,184,0,0" Click="ButtonSaveTilføj_Click"/>
+                    <DataGrid x:Name="DatagridTilføj" AutoGenerateColumns="False" Margin="312,-1,10,0" ColumnWidth="*">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="PortX" Binding="{Binding PortSpecifier}"/>
+                            <DataGridTextColumn Header="Porttal" Binding="{Binding PortNumber}"/>
+                            <DataGridCheckBoxColumn Header="Aktivitet" Binding="{Binding Activity}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <CheckBox x:Name="checkbox" Content="Aktivitet" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,117,0,0"/>
+                    <TextBox Visibility="Hidden" x:Name="TextBoxNewRoom" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="130,33,0,0"/>
+                    <Button Visibility="Hidden" x:Name="ButtonNewRoomSave" Content="Gem" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="175,56,0,0" Click="ButtonNewRoomSave_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <DataGrid CellEditEnding="MyDatagrid_CellEditEnding" AutoGenerateColumns="False"  x:Name="myDatagrid" HorizontalAlignment="Left" Height="214" VerticalAlignment="Top" Width="224" ColumnWidth="*" Margin="10,246,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="PortX" Binding="{Binding PortSpecifier}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Porttal" Binding="{Binding PortNumber}"/>
+                <DataGridCheckBoxColumn Header="Aktivitet" Binding="{Binding Activity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid AutoGenerateColumns="False"  x:Name="myDatagrid_Copy" HorizontalAlignment="Left" Height="214" VerticalAlignment="Top" Width="224" ColumnWidth="*" Margin="284,246,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="PortX" Binding="{Binding PortSpecifier}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Porttal" Binding="{Binding PortNumber}"/>
+                <DataGridCheckBoxColumn Header="Aktivitet" Binding="{Binding Activity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
